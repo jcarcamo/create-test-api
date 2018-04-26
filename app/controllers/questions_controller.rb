@@ -9,7 +9,9 @@ class QuestionsController < ApplicationController
         if current_user == @user
           json_response(@test.questions)
         else
-          json_response(@test.questions.where(status: :published))
+            if @test.published?
+                json_response(@test.questions)
+            end
         end
     end
 
