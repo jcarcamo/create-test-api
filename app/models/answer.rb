@@ -1,5 +1,5 @@
 class Answer < ApplicationRecord
-    validates :description, presesnce: true
+    validates :description, presence: true
     enum status: [:correct, :incorrect]
     belongs_to :question
 end

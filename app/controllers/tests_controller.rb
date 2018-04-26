@@ -14,10 +14,14 @@ class TestsController < ApplicationController
 
     # GET /users/:user_id/users/:id
     def show
-        if @test.published?
-          json_response(@test)
+        if current_user == @user
+            json_response(@test)
         else
-          json_response({'status' => 'unauthorized'}, :unauthorized)
+            if @test.published?
+              json_response(@test)
+            else
+              json_response({'status' => 'unauthorized'}, :unauthorized)
+            end
         end
     end
 
